@@ -5,6 +5,7 @@ public class Homework {
         System.out.println(sum(Integer.MAX_VALUE, Integer.MAX_VALUE));
         System.out.println(max(56, 349));
         System.out.println(average(new int[]{0, -2, 3, -1, 5}));
+        System.out.println(average(new int[]{}));
         System.out.println(max(new int[]{1, 2, 3, 4, 5, 100, 99}));
         System.out.println(calculateHypotenuse(3, 4));
 
@@ -56,7 +57,13 @@ public class Homework {
         for (int element : array) {
             countAverage += element;
         }
-        return (double) countAverage / array.length;
+        if (countAverage == 0) {
+            System.out.print("Пустой массив ");
+            return countAverage;
+        } else {
+            countAverage = countAverage / array.length;
+        }
+        return countAverage;
     }
 
     /**
