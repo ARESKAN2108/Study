@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Homework {
@@ -10,11 +11,12 @@ public class Homework {
         System.out.println(calculateCountOfOddElementsInMatrix(new int[]{1, 2, 3, 4, 5, 6}));
         calculateSumOfDiagonalElements();
         countDevs(12);
-//        foobar(6);
-//        foobar(10);
-//        foobar(15);
-//        printMatrix();
-//        printPrimeNumbers();
+        foobar(6);
+        foobar(10);
+        foobar(15);
+        foobar(14);
+        printMatrix();
+        printPrimeNumbers();
     }
 
     /**
@@ -122,6 +124,93 @@ public class Homework {
             }
         } else {
             System.out.println(count + " программистов");
+        }
+    }
+
+    /**
+     * Метод должен выводить разные строки в консоли в зависимости от некоторых условий:
+     * - если остаток от деления на 3 равен нулю - выведите "foo" (example of number - 6)
+     * - если остаток от деления на 5 равен нулю - вывести "bar" (example of number - 10)
+     * - если остаток от деления на 3 и 5 равен нулю 0,то вывести "foobar" (example of number - 15)
+     */
+
+    public static void foobar(int number) {
+        if (number % 3 == 0 && number % 5 == 0) {
+            System.out.println("foobar");
+        } else if (number % 3 == 0) {
+            System.out.println("foo");
+        } else if (number % 5 == 0) {
+            System.out.println("bar");
+        } else {
+            System.out.println("число не делится на 3 и на 5");
+        }
+    }
+
+    /**
+     * Шаги по реализации:
+     * - Прочитать два int из консоли
+     * - Создайте двумерный массив int (используйте целые числа, которые вы читаете по высоте и ширине консоли)
+     * - Заполнить массив случайными значениями (до 100)
+     * - Вывести в консоль матрицу заданного размера, но:
+     * - Если остаток от деления элемента массива на 3 равен нулю - выведите знак "+" вместо значения элемента массива.
+     * - Если остаток от деления элемента массива на 7 равен нулю - выведите знак "-" вместо значения элемента массива.
+     * - В противном случае выведите "*"
+     * <p>
+     * Example:
+     * - Значения с консоли - 2 и 3
+     * - Массив будет выглядеть так (значения будут разными, потому что он случайный)
+     * 6 11 123
+     * 1 14 21
+     * - Для этого значения вывод в консоли должен быть:
+     * <p>
+     * + * *
+     * * - +
+     * <p>
+     * Обратите внимание, что 21% 3 == 0 и 21% 7 = 0, но выводить надо не +-, а +
+     */
+
+
+    public static void printMatrix() {
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите число для высоты массива:");
+        int high = scanner.nextInt();
+        System.out.println("Введите число для ширины массива:");
+        int width = scanner.nextInt();
+        int[][] array = new int[high][width];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] = random.nextInt(100);
+                if (array[i][j] % 3 == 0) {
+                    System.out.print("+ ");
+                } else if (array[i][j] % 7 == 0) {
+                    System.out.print("- ");
+                } else {
+                    System.out.print("* ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Задача со звездочкой!
+     * Метод должен печатать все простые числа <1000
+     * что такое просто число (https://www.webmath.ru/poleznoe/formules_18_5.php)
+     */
+
+    public static void printPrimeNumbers() {
+        for (int i = 2; i < 1000; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.println(i);
+            }
         }
     }
 }
